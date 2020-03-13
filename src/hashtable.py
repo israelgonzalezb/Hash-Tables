@@ -54,6 +54,19 @@ class HashTable:
 
         Fill this in.
         '''
+
+        # 1. Use hash_mod private function to make a key
+        hashed_key = self._hash_mod(key)
+
+        # 2. Check storage to see if something is in that index
+        if self.storage[hashed_key] is not None:
+            print("WARNING you are overwriting stuff")
+
+        # 3. Insert the value at that index
+        self.storage[hashed_key] = (key, value)
+
+
+
         pass
 
 
@@ -66,6 +79,13 @@ class HashTable:
 
         Fill this in.
         '''
+
+        # 1. Hash the key
+        hashed_key = self._hash_mod(key)
+
+        # 2. Setting to None is a very basic implementation
+        self.storage[hashed_key] = None 
+
         pass
 
 
@@ -77,7 +97,11 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+
+        # 1. We need to hash the key that was provided
+        hashed_key = self._hash_mod(key)
+
+        return self.storage[hashed_key]
 
 
     def resize(self):
@@ -87,7 +111,16 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        #1. Make an array of double the size of the current array
+        self.capacity = self.capacity * 2
+        new_storage = [None] * self.capacity
+
+        # 2. Move the original arrays items into the new doubled array
+        for i in range(len(self.storage)):
+            new_storage[i] = self.storage[i]
+        
+        # 3. Set the tables own storage property to be the new created array
+        self.storage = new_storage
 
 
 
