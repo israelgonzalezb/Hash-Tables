@@ -60,14 +60,11 @@ class HashTable:
 
         # 2. Check storage to see if something is in that index
         if self.storage[hashed_key] is not None:
-            print("WARNING you are overwriting stuff")
+            print("WARNING you are overwriting ", self.storage[hashed_key])
+            pass
 
         # 3. Insert the value at that index
-        self.storage[hashed_key] = (key, value)
-
-
-
-        pass
+        self.storage[hashed_key] = (key, value) # (key, value) is a tuple, which is an immutable data type in python
 
 
 
@@ -100,7 +97,7 @@ class HashTable:
 
         # 1. We need to hash the key that was provided
         hashed_key = self._hash_mod(key)
-
+        print("!!! Retrieve ", self.storage[hashed_key])
         return self.storage[hashed_key]
 
 
